@@ -1,5 +1,8 @@
+from forms import RegistrationForm, LoginForm
 from flask import Flask, render_template, url_for
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = '4168461357cf940173596c551cc9ea6d'
 
 posts = [
     {
@@ -7,13 +10,13 @@ posts = [
         'title': 'Blog 2',
         'content': 'First Content',
         'date_posted': 'April 28, 2020'
-        },
+    },
     {
         'author': 'Aaron Edward',
         'title': 'Blog 2',
         'content': 'Second Content',
         'date_posted': 'April 28, 2020'
-        }
+    }
 ]
 
 
@@ -22,9 +25,23 @@ posts = [
 def home():
     return render_template('home.html', posts=posts)
 
-    @app.route('/about')
-    def about():
-        return render_template('about.html', title='About')
 
-        if __name__ == '__main__':
-            app.run(debug=True)
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')
+
+
+@app.route('/register')
+def register():
+    form = RegistrationForm()
+    return render_template('register.html', title='Register', form=form)
+
+
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Login', form=form)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
