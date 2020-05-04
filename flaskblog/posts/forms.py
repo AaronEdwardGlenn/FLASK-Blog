@@ -1,3 +1,7 @@
+from flask_wtf.form import FlaskForm
+from wtforms.fields.core import StringField
+from wtforms.fields.simple import SubmitField, TextAreaField
+from wtforms.validators import DataRequired
 
 
 class PostForm(FlaskForm):
