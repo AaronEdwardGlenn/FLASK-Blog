@@ -6,13 +6,13 @@ from flask_mail import Mail
 from flaskblog.config import Config
 
 
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
+db = SQLAlchemy()
+bcrypt = Bcrypt()
+login_manager = LoginManager()
 login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 
-mail = Mail(app)
+mail = Mail()
 
 
 def create_app(config_class=Config):
