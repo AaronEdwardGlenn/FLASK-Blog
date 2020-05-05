@@ -22,10 +22,11 @@ def save_picture(form_picture):
 
     return picture_fn
 
-    def send_reset_email(user):
-        token = user.get_reset_token()
-        email_sender = os.environ.get('EMAIL_USER')
-        msg = Message('Password Reset Request',
-                      sender=email_sender, recipients=[user.email])
-        msg.body = f'''To reset your password, visit the following link: {url_for('users.reset_token', token=token, _external=True)}. If you did not make this request, simply ignore this email.'''
-        mail.send(msg)
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+    email_sender = os.environ.get('EMAIL_USER')
+    msg = Message('Password Reset Request',
+                  sender=email_sender, recipients=[user.email])
+    msg.body = f'''To reset your password, visit the following link: {url_for('users.reset_token', token=token, _external=True)}. If you did not make this request, simply ignore this email.'''
+    mail.send(msg)
